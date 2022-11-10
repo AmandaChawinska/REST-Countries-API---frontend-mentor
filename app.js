@@ -13,7 +13,7 @@ fetch(API_URL_ALL)
         population: country.population,
         name: country.name.common,
         region: country.region,
-        flagURL: country.flags.png,
+        flagUrl: country.flags.png,
       };
     });
     renderCountriesList(countries);

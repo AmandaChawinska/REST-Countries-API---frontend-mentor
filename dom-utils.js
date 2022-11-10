@@ -12,28 +12,33 @@ const createInfoElement = (labelName, value) => {
   return infoElement;
 };
 
+const createFlageImgElement = (country) => {
+    const imgContainerElement = document.createElement("div");
+  const imgElement = document.createElement("img");
+  imgElement.src = country.flagUrl;
+  
+
+  imgContainerElement.appendChild(imgElement);
+
+  return imgElement;
+};
+
 const createCountryItemElement = (country) => {
   const countryElement = document.createElement("li");
 
   const countryNameElement = document.createElement("span");
   countryNameElement.innerText = country.name;
 
+  countryElement.appendChild(createFlageImgElement(country));
   countryElement.appendChild(countryNameElement);
 
-  countryElement.appendChild(createInfoElement(
-    "Population",
-    country.population
-  ));
+  countryElement.appendChild(
+    createInfoElement("Population", country.population)
+  );
 
-  countryElement.appendChild(createInfoElement(
-    "Region",
-    country.region
-  ));
+  countryElement.appendChild(createInfoElement("Region", country.region));
 
-  countryElement.appendChild(createInfoElement(
-    "Capital",
-    country.capital
-  ));
+  countryElement.appendChild(createInfoElement("Capital", country.capital));
 
   return countryElement;
 };
