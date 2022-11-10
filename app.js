@@ -1,3 +1,5 @@
+import {renderCountriesList} from "./dom-utils.js";
+
 const API_URL_ALL = "https://restcountries.com/v3.1/all";
 
 let countries;
@@ -14,5 +16,5 @@ fetch(API_URL_ALL)
         flagURL: country.flags.png,
       };
     });
-    console.log(countries);
+    renderCountriesList(countries);
   });
