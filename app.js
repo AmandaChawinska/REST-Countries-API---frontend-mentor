@@ -27,3 +27,10 @@ document.querySelector("#query").addEventListener("input", (e) => {
   );
   renderCountriesList(countries);
 });
+
+document.querySelector("#region").addEventListener('change', (e) => {
+  const region = (e.target.value);
+
+  countries = countries.filter((country) => country.region === region);
+  renderCountriesList(countries);
+});
