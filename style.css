@@ -2,7 +2,7 @@
   --color-text: hsl(200, 15%, 8%);
   --color-input: hsl(0, 0%, 52%);
   --color-background: hsl(0, 0%, 98%);
-  /* --color-white: hsl(0, 0%, 100%); */
+  --color-header-background: hsl(0, 0%, 100%);
 }
 
 * {
@@ -16,18 +16,37 @@ body {
   font-size: 14px;
   background: var(--color-background);
   color: var(--color-text);
+ 
+}
+
+
+main {
+  max-width: 1280px;
+  margin: 0 auto; 
   padding: 0 32px;
 }
 
-header,
-main {
-  max-width: 1280px;
-  margin: 0 auto;
+header {
+  
+    background: var(--color-header-background);
+    margin-bottom: 32px;
 }
 
-main {
-  background: var(--color-background);
+.header-content{
+      display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 32px;
+    max-width: 1280px;
 }
+
+header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
 
 ul {
   display: grid;
