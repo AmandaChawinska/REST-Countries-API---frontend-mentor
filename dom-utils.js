@@ -2,7 +2,7 @@ const createInfoElement = (labelName, value) => {
   const infoElement = document.createElement("div");
 
   const labelElement = document.createElement("strong");
-  labelElement.innerText = `${labelName}:`;
+  labelElement.innerText = `${labelName}: `;
   const valueElement = document.createElement("span");
   valueElement.innerText = value;
 
