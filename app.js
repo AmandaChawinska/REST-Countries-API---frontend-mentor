@@ -22,15 +22,15 @@ fetch(API_URL_ALL)
 
 document.querySelector("#query").addEventListener("input", (e) => {
   const query = e.target.value.toLowerCase().trim();
-  countries = countries.filter((country) =>
+  const filteredCountries = countries.filter((country) =>
     country.name.toLowerCase().includes(query)
   );
-  renderCountriesList(countries);
+  renderCountriesList(filteredCountries);
 });
 
 document.querySelector("#region").addEventListener('change', (e) => {
   const region = (e.target.value);
 
-  countries = countries.filter((country) => country.region === region);
-  renderCountriesList(countries);
+  const filteredCountries = countries.filter((country) => country.region === region);
+  renderCountriesList(filteredCountries);
 });
