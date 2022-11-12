@@ -104,15 +104,30 @@ const createDetailElement = (country) => {
   return detailContainerElement;
 };
 
-const createBackButtonElement = () => {
-  const anchorElement = document.createElement('a');
-  anchorElement.innerText = 'Go back';
+const createDetailButton = (text, link) => {
+  const anchorElement = document.createElement("a");
+  anchorElement.innerText = text;
   anchorElement.classList.add("detail-back-link");
-  anchorElement.href = "/";
+  anchorElement.href = link;
 
   return anchorElement;
 };
 
+const createBorderCountriesContainer = (country) => {
+  const borderCountriesContainerElement = document.createElement("div");
+  const labelElement = document.createElement("strong");
+  labelElement.innerText = "Border Countries";
+
+  borderCountriesContainerElement.appendChild(labelElement);
+
+  country.borders.forEach((border) => {
+    borderCountriesContainerElement.appendChild(
+      createDetailButton(border, `/?country=${border}`)
+    );
+  });
+
+  return borderCountriesContainerElement;
+};
 
 export const renderCountriesList = (countries) => {
   const rootElement = document.querySelector("#root");
@@ -125,6 +140,9 @@ export const renderCountriesList = (countries) => {
 export const renderCountryDetails = (country) => {
   const rootElement = document.querySelector("#root");
   rootElement.innerHTML = "";
-  rootElement.appendChild(createBackButtonElement());
+  rootElement.appendChild(createDetailButton("Go back", "/"));
   rootElement.appendChild(createDetailElement(country));
+  if (country.borders && country.borders.length >0 ) {
+    rootElement.appendChild(createBorderCountriesContainer(country));
+  }
 };

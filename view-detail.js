@@ -28,6 +28,7 @@ export const renderDetail = () => {
         currencies: Object.values(country.currencies).map(currency => currency.name).join(', '),
         languages: Object.values(country.languages).join(", "),
         tld: country.tld[0],
+        borders: country.borders,
       };
       renderCountryDetails(country);
     });
