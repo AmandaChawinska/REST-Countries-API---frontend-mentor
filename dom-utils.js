@@ -104,6 +104,16 @@ const createDetailElement = (country) => {
   return detailContainerElement;
 };
 
+const createBackButtonElement = () => {
+  const anchorElement = document.createElement('a');
+  anchorElement.innerText = 'Go back';
+  anchorElement.classList.add("detail-back-link");
+  anchorElement.href = "/";
+
+  return anchorElement;
+};
+
+
 export const renderCountriesList = (countries) => {
   const rootElement = document.querySelector("#root");
   rootElement.innerHTML = "";
@@ -115,5 +125,6 @@ export const renderCountriesList = (countries) => {
 export const renderCountryDetails = (country) => {
   const rootElement = document.querySelector("#root");
   rootElement.innerHTML = "";
+  rootElement.appendChild(createBackButtonElement());
   rootElement.appendChild(createDetailElement(country));
 };
