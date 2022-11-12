@@ -26,7 +26,10 @@ const createFlageImgElement = (country) => {
 const createCountryItemElement = (country) => {
   const countryElement = document.createElement("li");
 
-  countryElement.appendChild(createFlageImgElement(country));
+  const anchorElement = document.createElement("a");
+  anchorElement.href = `?country=${country.code}`;
+
+  anchorElement.appendChild(createFlageImgElement(country));
 
   const infoContainerElement = document.createElement("div");
   infoContainerElement.classList.add("info-container");
@@ -46,7 +49,9 @@ const createCountryItemElement = (country) => {
     createInfoElement("Capital", country.capital)
   );
 
-  countryElement.appendChild(infoContainerElement);
+  anchorElement.appendChild(infoContainerElement);
+
+  countryElement.appendChild(anchorElement);
 
   return countryElement;
 };
@@ -59,10 +64,56 @@ const createListElement = (countries) => {
   return listElement;
 };
 
+const createDetailElement = (country) => {
+  const detailContainerElement = document.createElement("div");
+
+  const flagImgElement = createFlageImgElement(country);
+  const detailNameElement = document.createElement("strong");
+
+  detailContainerElement.appendChild(flagImgElement);
+  detailContainerElement.appendChild(detailNameElement);
+
+  detailContainerElement.appendChild(
+    createInfoElement("Native name", country.nativeName)
+  );
+
+  detailContainerElement.appendChild(
+    createInfoElement("Population", country.population)
+  );
+  detailContainerElement.appendChild(
+    createInfoElement("Region", country.region)
+  );
+  detailContainerElement.appendChild(
+    createInfoElement("Sub region", country.subregion)
+  );
+  detailContainerElement.appendChild(
+    createInfoElement("Capital", country.capital)
+  );
+  detailContainerElement.appendChild(
+    createInfoElement("Top level domain", country.tld)
+  );
+
+  detailContainerElement.appendChild(
+    createInfoElement("Currencies", country.currencies)
+  );
+
+  detailContainerElement.appendChild(
+    createInfoElement("Langugage", country.language)
+  );
+
+  return detailContainerElement;
+};
+
 export const renderCountriesList = (countries) => {
   const rootElement = document.querySelector("#root");
   rootElement.innerHTML = "";
   rootElement.appendChild(createListElement(countries));
 
   // render country items into main element
+};
+
+export const renderCountryDetails = (country) => {
+  const rootElement = document.querySelector("#root");
+  rootElement.innerHTML = "";
+  rootElement.appendChild(createDetailElement(country));
 };
