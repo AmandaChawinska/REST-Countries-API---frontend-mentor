@@ -68,38 +68,59 @@ const createDetailElement = (country) => {
   const detailContainerElement = document.createElement("div");
 
   const flagImgElement = createFlageImgElement(country);
+  const detailContentElement = document.createElement('div');
+  detailContainerElement.classList.add("detail-container");
+detailContentElement.classList.add("detail-content")
+
   const detailNameElement = document.createElement("strong");
+  detailNameElement.innerText = country.name;
+  detailNameElement.classList.add('detail-name');
+
 
   detailContainerElement.appendChild(flagImgElement);
-  detailContainerElement.appendChild(detailNameElement);
+  detailContentElement.appendChild(detailNameElement);
 
-  detailContainerElement.appendChild(
+  const leftColumnElement = document.createElement('div');
+
+  leftColumnElement.appendChild(
     createInfoElement("Native name", country.nativeName)
   );
 
-  detailContainerElement.appendChild(
+  leftColumnElement.appendChild(
     createInfoElement("Population", country.population)
   );
-  detailContainerElement.appendChild(
+  leftColumnElement.appendChild(
     createInfoElement("Region", country.region)
   );
-  detailContainerElement.appendChild(
+  leftColumnElement.appendChild(
     createInfoElement("Sub region", country.subregion)
   );
-  detailContainerElement.appendChild(
+  leftColumnElement.appendChild(
     createInfoElement("Capital", country.capital)
   );
-  detailContainerElement.appendChild(
+
+const rightColumnElement = document.createElement('div');
+
+rightColumnElement.appendChild(
     createInfoElement("Top level domain", country.tld)
   );
 
-  detailContainerElement.appendChild(
+  rightColumnElement.appendChild(
     createInfoElement("Currencies", country.currencies)
   );
 
-  detailContainerElement.appendChild(
-    createInfoElement("Langugage", country.language)
+  rightColumnElement.appendChild(
+    createInfoElement("Languages", country.languages)
   );
+
+  detailContentElement.appendChild(leftColumnElement);
+  detailContentElement.appendChild(rightColumnElement);
+
+  if (country.borders && country.borders.length > 0 ) {
+    detailContentElement.appendChild(createBorderCountriesContainer(country));
+  };
+
+  detailContainerElement.appendChild(detailContentElement);
 
   return detailContainerElement;
 };
@@ -107,7 +128,7 @@ const createDetailElement = (country) => {
 const createDetailButton = (text, link) => {
   const anchorElement = document.createElement("a");
   anchorElement.innerText = text;
-  anchorElement.classList.add("detail-back-link");
+  anchorElement.classList.add("detail-button");
   anchorElement.href = link;
 
   return anchorElement;
@@ -115,6 +136,7 @@ const createDetailButton = (text, link) => {
 
 const createBorderCountriesContainer = (country) => {
   const borderCountriesContainerElement = document.createElement("div");
+  borderCountriesContainerElement.classList.add("border-countries-container");
   const labelElement = document.createElement("strong");
   labelElement.innerText = "Border Countries";
 
@@ -142,7 +164,5 @@ export const renderCountryDetails = (country) => {
   rootElement.innerHTML = "";
   rootElement.appendChild(createDetailButton("Go back", "/"));
   rootElement.appendChild(createDetailElement(country));
-  if (country.borders && country.borders.length >0 ) {
-    rootElement.appendChild(createBorderCountriesContainer(country));
-  }
+
 };
